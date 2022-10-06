@@ -1,0 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+:root {
+    --main-color: rgb(16, 124, 16);
+    --section-padding: 80px;
+}
+
+html{
+	direction: rtl
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* background-color: rgb(252, 244, 244); */
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+header {
+    box-shadow: 0px 0px 10px rgb(216, 206, 206);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .link {
+    display: flex;
+    align-items: center;
+}
+
+nav .link ul {
+    margin-left: 10px;
+}
+
+nav .link ul li a {
+    display: inline-block;
+    padding: 8px 25px;
+    font-weight: 600;
+    color: #333;
+    transition: all .3s;
+}
+
+nav .link ul li a:hover {
+    color: var(--main-color);
+}
+
+nav .link .btn {
+    text-decoration: none;
+    color: white;
+    background-color: var(--main-color);
+    padding: 8px 25px;
+    border-radius: 25px;
+    border: 1px solid var(--main-color);
+    transition: all .3s;
+}
+
+nav .link .btn:hover {
+    background-color: #eee;
+    color: var(--main-color);
+}
+
+nav .logo a{
+    text-decoration: none;
+}
+
+nav .logo span {
+    display: block;
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+}
+
+nav .logo span:last-child {
+    color: var(--main-color);
+    position: relative;
+    top: -13px;
+}
+
+.twonav li {
+    padding-left: 18px;
+    font-size: 13px;
+}
+
+.twonav li:last-child a {
+    font-weight: 700;
+}
+
+.wrapper h2 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.two {
+    background-color: var(--main-color);
+}
+
+.two .threenav ul li span {
+    color: white;
+}
+
+.two .threenav ul li a {
+    color: white;
+    display: inline-block;
+    padding: 20px 12.5px 25px 12.5px;
+}
+
+.two .threenav ul li:first-child a {
+    padding-right: 0;
+}
+
+.three {
+    margin: 100px 0 350px;
+}
+
+.three .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.three .wrapper div {
+    width: 45%;
+}
+
+.three .wrapper .right {
+    color: #333;
+}
+
+.three .wrapper .right h1 {
+    margin: 0;
+}
+
+.three .wrapper .right a {
+    padding: 8px 35px;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 25px;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 15px;
+    border: 1px solid var(--main-color);
+    transition: all .3s;
+}
+
+.three .wrapper .right a:hover {
+    background-color: #eee;
+    color: var(--main-color);
+}
+
+.three .wrapper .left {
+    position: relative;
+}
+
+.three .wrapper .left img {
+    border-radius: 15px;
+    position: absolute;
+    box-shadow: 1px 1px 5px rgb(194, 190, 190);
+}
+
+.three .wrapper .left img:nth-child(1) {
+    top: -40px;
+    left: 20px;
+    z-index: 1;
+}
+
+.three .wrapper .left img:nth-child(2) {
+    top: 200px;
+    left: 40px;
+    z-index: 2;
+}
+
+.three .wrapper .left img:nth-child(3) {
+    top: 100px;
+    left: 280px;
+    z-index: 3;
+}
+
+.four {
+    color: #333;
+    margin-bottom: 80px;
+}
+
+.four .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.four .rgite {
+    width: 35%;
+}
+
+.four .rgite .side hr {
+    background-color: rgb(6, 126, 126);
+}
+
+.four .side hr {
+    height: 3px;
+    width: 100%;
+}
+
+.four .left .side hr {
+    width: 85%;
+    margin-right: 0;
+}
+
+.four .side {
+    margin: 30px 20px 0 0;
+}
+
+.four .side div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.four .side div p {
+    margin: 0;
+}
+
+.four .side div span {
+    color: rgb(6, 126, 126);
+}
+
+.four .side > p {
+    font-size: 13px;
+    /* margin: 0; */
+}
+
+.four .side p span:first-child {
+    margin-left: 15px;
+}
+
+.four .side a {
+    color: white;
+    background-color: var(--main-color);
+    padding: 8px 40px;
+    border-radius: 25px;
+    display: inline-block;
+    margin-top: 10px;
+    border: 1px solid var(--main-color);
+    transition: all .3s;
+}
+
+.four .side a:hover {
+    background-color: #eee;
+    color: var(--main-color);
+}
+
+.four .rgite h2 {
+    font-weight: 600;
+}
+
+.four .left {
+    width: 50%;
+}
+
+.four .left .side {
+    width: 45%;
+}
+
+.btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn h2 {
+    font-weight: 600;
+}
+
+.btn span {
+    font-weight: 600;
+    color: rgb(6, 126, 126);
+    cursor: pointer;
+}
+
+.four .left .wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.five {
+    margin-bottom: 80px;
+}
+
+.five .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.five .wrapper .box {
+    width: 22%;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgb(216, 206, 206);
+    padding: 15px;
+    border-radius: 5px;
+
+}
+
+.five .wrapper .box img {
+    border-radius: 30px;
+}
+
+.five .wrapper .box h3 {
+    color: rgb(6, 126, 126);
+}
+
+.five .wrapper .box p {
+    color: #333;
+}
+
+.sex {
+    color: #333;
+    width: 70%;
+    margin: 0 auto 80px;
+}
+
+.sex h2 {
+    text-align: center;
+}
+
+.sex form {
+    width: 100%;
+    padding: 30px 50px;
+    box-shadow: 0px 0px 10px rgb(216, 206, 206);
+}
+
+.sex form .wrapper {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.sex form .wrapper div {
+    width: 49%;
+    margin-bottom: 20px;
+}
+
+.sex form .wrapper div input {
+    width: 100%;
+}
+
+.sex form label {
+    color: #333;
+    font-weight: 600;
+}
+
+.sex form input {
+    border: 1px solid #333;
+    background-color: #eee;
+}
+
+.sex form .textarea label{
+    display: block;
+
+}
+
+.sex form .textarea textarea{
+    width: 100%;
+    height: 200px;
+    border: 1px solid #333;
+    background-color: #eee;
+}
+
+.sex form .submit {
+    display: block;
+    border: 1px solid var(--main-color);
+    background-color: var(--main-color);
+    color: white;
+    padding: 8px 40px;
+    border-radius: 25px;
+    margin-top: 20px;
+}
+
+.sex form span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+footer {
+    background-color: #ddd;
+    color: #333;
+}
+
+footer .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .wrapper > div {
+    width: 30%;
+    padding: 20px;
+}
+
+footer .wrapper  .list {
+    width: 40%;
+}
+
+footer .wrapper .list .sub {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .wrapper .list ul {
+    display: block;
+    width: 50%;
+}
+
+footer .wrapper ul {
+    display: block;
+}
+
+footer .wrapper ul li {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+footer p {
+    text-align: center;
+}

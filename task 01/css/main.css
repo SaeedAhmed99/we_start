@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #eee;
+    height: 1000px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    /* background-color: #333; */
+}
+
+.header {
+    background-color: #eee;
+    box-shadow: 0 1px 10px rgb(211, 208, 208);
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    padding: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav .logo {
+    width: 120px;
+    height: 40px;
+}
+
+nav .logo img {
+    max-width: 100%;
+}
+
+header {
+    width: 100%;
+    margin-top: 70px;
+}
+
+header img {
+    width: 100%;
+    height: 380px;
+    /* object-fit: cover; */
+}
+
+.services {
+    padding: 20px 0 50px;
+    text-align: center;
+    background-color: white;
+}
+
+.services .container h2 {
+    width: 120px;
+    margin: 0 auto 20px;
+    /* text-decoration: underline; */
+    border-bottom: 2px solid #333;
+}
+
+.services .container p {
+    color: #333;
+}
+
+.image_text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.image_text img {
+    width: 40%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.image_text .text {
+    width: 55%;
+    padding: 40px 0;
+}
+
+.image_text .text p {
+    color: #333;
+}
+
+.cardsection {
+    background-color: white;
+    padding: 40px 0;
+    width: 100%;
+}
+
+.cardsection .wrap{
+    display: flex;
+    justify-content: space-between;
+    /* margin: 50px 0; */
+}
+
+.card {
+    width: 32%;
+    box-shadow: 0 2px 10px rgb(211, 208, 208);
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fff;
+    
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card .content {
+    padding: 20px;
+}
+
+.card .content p {
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.card .content h2 {
+    margin-top: 0;
+}
+
+.card .content h2 a {
+    text-decoration: none;
+    color: black;
+}
+
+.card a.btn {
+    display: block;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #333;
+    transition: all .3s ease;
+}
+
+.card a.btn:hover {
+    color: #333;
+    background: transparent;
+}
+
+.mapsection {
+    padding-bottom: 40px;
+}
+
+.mapsection .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mapsection .mapouter {
+    width: 40%;
+}
+
+.mapsection form {
+    width: 55%;
+    padding-top: 50px;
+}
+
+.mapsection form .name,
+.mapsection form .email,
+.mapsection form .message {
+    padding: 20px;
+    display: block;
+    border: 1px solid #ccc;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.mapsection form textarea {
+    height: 200px;
+}
+
+.mapsection form input[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border: none;
+    display: flex;
+    /* margin-left: auto; */
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid #333;
+    border-radius: 4px;
+    transition: all .3s;
+}
+
+.mapsection form input[type="submit"]:hover {
+    background-color: transparent;
+    color: #333;
+}
+
+footer {
+    width: 100%;
+}
+
+footer img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    position: relative;
+    top: 10px;
+}
+
+footer .copyright {
+    background-color: black;
+    color: white;
+    padding: 0 0 20px 0;
+    text-align: center;
+}
+
+.top {
+    width: 40px;
+    height: 40px;
+    background: rgb(90, 87, 87);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(51, 51, 51, 0.3);
+    cursor: pointer;
+    opacity: .7;
+    transition: all .3s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    
+}
+
+.top:hover {
+    opacity: 1;
+}

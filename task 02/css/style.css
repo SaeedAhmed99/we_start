@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap');* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: rgb(248, 238, 238);
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: rgb(49, 49, 209);
+    position: fixed;
+    width: 100%;
+    margin-top: -66px;
+    z-index: 2;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    color: white;
+}
+
+header nav .link {
+    display: flex;
+    align-items: center;
+}
+
+header nav .link span {
+    padding-right: 10px;
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 25px;
+}
+
+header nav .link ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav .link ul li {
+    padding: 0 20px;
+}
+
+header nav .link ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+header nav .button a {
+    color: black;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+header nav .button a:first-child {
+    background-color: aqua;
+}
+
+header nav .button a:last-child {
+    background-color: rgb(230, 230, 75);
+}
+
+.view {
+    width: 100%;
+    height: calc(100vh - 65px);
+    background-image: url('/images/header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 66px;
+}
+
+.view .side {
+    background-color: white;
+    color: black;
+    width: 450px;
+    position: relative;
+    top: 70px;
+    padding-bottom: 20px;
+}
+
+.view .side .btn {
+    width: 100%;
+    display: flex;
+}
+
+.view .side .btn a{
+    width: 50%;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(49, 49, 209);
+    padding: 15px 10px;
+    border-radius: 4px;
+}
+
+.view .side .btn a:last-child {
+    color: black;
+    background-color: white;
+    border-bottom: 3px solid rgb(49, 49, 209);
+    font-weight: 400;
+}
+
+.view .side .localbtn {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.view .side .localbtn a {
+    color: black;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.view .side .localbtn a:last-child {
+    background-color: aqua;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+.view .side .localbtn a:first-child {
+    padding: 0 15px;
+    border-bottom: 2px solid aqua;
+    line-height: 2;
+}
+
+.view .side .form {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.view .side .form div {
+    margin-bottom: 15px;
+}
+
+.view .side .form label, .view .side .form input {
+    width: 100%;
+    display: block;
+}
+
+.view .side .form label {
+    color: #333;
+    margin: 0 0 5px 10px;
+}
+
+.view .side .form input {
+    padding: 10px;
+    background-color: #eee;
+    border: none;
+    border-radius: 4px ;
+}
+
+.view .side .form .lastinput {
+    display: flex;
+    column-gap: 10px;
+}
+
+.view .side .form .lastinput input:last-child {
+    width: fit-content;
+    background-color: aqua;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: 400;
+}
+
+.services h1{
+    color: #333;
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+.services .section {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin:  40px 0;
+}
+
+.services .two {
+    margin:  20px 0;
+}
+
+
+.services .section .text {
+    padding-right: 25px;
+}
+
+.services .section .text:nth-child(2) {
+    padding-left: 25px;
+}
+
+.services .section .text h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.services .section .text p {
+    line-height: 1.6;
+    color: #333;
+}
+
+.services .section img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+footer {
+    background-color: rgb(49, 49, 209);
+    padding: 30px 0;
+    font-size: 18px;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+footer .info {
+    color: white;
+}
+
+footer .info p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+footer .info .icon {
+    margin: 20px 10px;
+    font-size: 50px;
+    color: black;
+}
+
+footer .link ul {
+    list-style: none;
+}
+
+footer .link ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
