@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: #eee;
+    padding: 15px 80px;
+}
+
+header .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .wrapper a {
+    color: #333;
+    text-decoration: none;
+}
+
+header .wrapper a.logo {
+    font-size: 25px;
+}
+
+header .wrapper nav {
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .wrapper nav a {
+    margin-left: 20px;
+}
+
+header .wrapper nav a.router-link-active {
+    color: red;
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
