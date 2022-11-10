@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 
-@section('title', 'All Posts | ' . env('APP_NAME'))
+@section('title', 'Trashed Posts | ' . env('APP_NAME'))
 
 @section('css')
 <style>
@@ -16,13 +16,13 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Dashboard</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">All Posts</li>
+            <li class="breadcrumb-item active">Trashed Posts</li>
         </ol>
     </div>
 
     <div class="px-4 m-2 py-2 .bg-light card">
-        <h1 class="h3 mb-4 text-gray-800">All Posts</h1>
-        <form id="search-form" method="GET" action="{{ route('admin.posts.index') }}">
+        <h1 class="h3 mb-4 text-gray-800">Trashed Posts</h1>
+        <form id="search-form" method="GET" action="{{ route('admin.posts.trash') }}">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search here.." name="search" value="{{ request()->search }}">
                 <select name="count" onchange="document.getElementById('search-form').submit()">
@@ -53,15 +53,14 @@
                 <tr>
                     <td>{{ $loop->iteration  }}</td>
                     <td>{{ $post->title }}</td>
-                    <td><img width="100" height="100" src="{{ asset($post->image) }}" alt=""></td>
+                    <td><img width="100" src="{{ asset($post->image) }}" alt=""></td>
                     <td>{{ $post->user->first_name }} {{ $post->user->last_name }}</td>
-                    <td>{{ $post->created_at->diffForHumans() }}</td>
-                    <td>{{ $post->updated_at->diffForHumans() }}</td>
+                    <td>{{ $post->created_at }}</td>
+                    <td>{{ $post->updated_at }}</td>
                     <td>
                         {{-- <div class="btn-group"> --}}
-                            <a href="#" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
-                            <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
-                            <a href="{{ route('admin.posts.destroy', $post->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                            <a href="{{ route('admin.posts.restore', $post->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-undo"></i></a>
+                            <a href="{{ route('admin.posts.forcedelete', $post->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i></a>
                         {{-- </div> --}}
                     </td>
                 </tr>

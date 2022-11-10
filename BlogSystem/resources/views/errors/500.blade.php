@@ -18,12 +18,11 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
                                 <div class="text-center mt-4">
-                                    <h1 class="display-1">401</h1>
-                                    <p class="lead">Unauthorized</p>
-                                    <p>Access to this resource is denied.</p>
-                                    <a href="{{ url("index.html") }}">
+                                    <h1 class="display-1">500</h1>
+                                    <p class="lead">Internal Server Error</p>
+                                    <a href="{{ route("front.index") }}">
                                         <i class="fas fa-arrow-left me-1"></i>
-                                        Return to Dashboard
+                                        Return to Home
                                     </a>
                                 </div>
                             </div>

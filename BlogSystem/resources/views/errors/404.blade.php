@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>404 Error - SB Admin</title>
+        <title>404</title>
         <link href="{{ asset("/adminassets/css/styles.css") }}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -18,11 +18,11 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
                                 <div class="text-center mt-4">
-                                    <h1 class="display-1">500</h1>
-                                    <p class="lead">Internal Server Error</p>
-                                    <a href="{{ url("index.html") }}">
+                                    <img class="mb-4 img-error" src="{{ asset("/adminassets/assets/img/error-404-monochrome.svg") }}" />
+                                    <p class="lead">This requested URL was not found on this server.</p>
+                                    <a href="{{ route("front.index") }}">
                                         <i class="fas fa-arrow-left me-1"></i>
-                                        Return to Dashboard
+                                        Return to Home
                                     </a>
                                 </div>
                             </div>
