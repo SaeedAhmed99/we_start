@@ -15,6 +15,11 @@ function myFunction() {
     document.getElementById("total").value = total
 }
 
+function onChange() {
+    document.getElementById("add_invoices").style.display = "none";
+    document.getElementById("block_add_invoices").style.display = "block";
+}
+
 
 $("#add_invpice_form").submit(function (e) {
     e.preventDefault();
@@ -27,13 +32,17 @@ $("#add_invpice_form").submit(function (e) {
         contentType: false,
         processData: false,
         success: function (data) {
-            $('#post_image').attr('src', data.image);
             $('#alert_add_invoice').empty()
             $('#alert_add_invoice').append(`
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <i class="fa fa-exclamation-circle me-2"></i>Created Successfuly
                 </div>
             `)
+            setTimeout(function(){
+                $('#alert_add_invoice').empty()
+            }, 5000);
+            document.getElementById("add_invoices").style.display = "block";
+            document.getElementById("block_add_invoices").style.display = "none";
             $('.invoicetableadd').prepend('<tr>' +
                 '<td>1</td>' +
                 '<td>' + data.invoice_number + '</td>' +
@@ -42,7 +51,8 @@ $("#add_invpice_form").submit(function (e) {
                 '<td>' + data.value_vat + '</td>' +
                 '<td>' + data.total + '</td>' +
                 '<td>' + data.user + '</td>' +
-                '<td></td>' +
+                '<td><button class="btn btn-danger" id="del_invoice" invoice_id="' + data.id +'">delete</button>' +
+                '<a class="btn btn-primary" >As PDF</a></td>' +
                 '</tr>')
         },
         error: function (data) {
@@ -61,52 +71,44 @@ $("#add_invpice_form").submit(function (e) {
 });
 
 
-$('#add_new_discount').submit(function () {
-    $("#add_new_discount_button").prop("disabled", true);
-    $.ajax({
-        type: "POST",
-        url: "/admin/courses/discounts/store",
-        data: $(this).serialize(),
-        success: function (resp) {
-            $("#add_new_discount")[0].reset();
-            $('.courses_list').show();
-            $('.groups_list').hide();
-            $('#alert_modal').empty()
-            $('#alert_modal').append('<div class="alert alert-success alert-dismissible fade show" role="alert">' +
-                '<i class="fa fa-exclamation-circle me-2"></i>Successfuly updated' +
-                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
-                '</div>')
-            $('.discountstableadd').prepend('<tr>' +
-                '<td>' + resp.discount_id + '</td>' +
-                '<td>' +
-                '<a class="titlediscount' + resp.id + '"> ' + resp.title_en + ' </a>' +
-                '</td>' +
-                '<td>' + resp.course_name + '</td>' +
-                '<td>' + resp.percentage + '%</td>' +
-                '<td>' + resp.allowed_times + '/' + resp.used_times + '</td>' +
-                '<td>' + resp.end_date + '</td>' +
-                '<td class="status'+resp.id+'">Active</td>' +
-                '<td class="deletestatus'+resp.id+'">' +
-                '<div class="button-group">' +
-                '<a value="' + resp.id + '" class="deletediscounts btn btn-danger btn-sm"' +
-                'href="javascript:void(0)"><i class="fas fa-trash "></i> </a>' +
-                '</div>' +
-                '</td>' +
-                '</tr>')
-            $("#add_new_discount_button").prop("disabled", false);
-        },
-        error: function () {
-            $('#alert_modal').empty();
-            for (const key in data.responseJSON.errors) {
-                $('#alert_modal').append(
-                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">\n' +
-                    '<i class="fa fa-exclamation-circle me-2"></i>' + data.responseJSON.errors[key][0] + '\n' +
-                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>\n' +
-                    '</div>'
-                )
-            }
-        }
-    });
-    return false;
-});
+$(document).on('click', '#del_invoice', function (e) {
+    e.preventDefault();
+    var invoice_id = $(this).attr('invoice_id');
+    var delinvoice = $(this).parent().parent();
 
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'post',
+                url: "/invoices/destroy",
+                data: {
+                    _token: csrf,
+                    id: invoice_id
+                },
+                success: function (data) {
+                    delinvoice.remove();
+                    Swal.fire(
+                        'Deleted!',
+                        'Record has been deleted.',
+                        'success'
+                    )
+                },
+                error: function (data) {
+                    Swal.fire(
+                        'Not Deleted!',
+                        'error'
+                    )
+                }
+            });
+
+        }
+    })
+});

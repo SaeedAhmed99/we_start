@@ -8,6 +8,10 @@
     .table td {
         vertical-align: middle
     }
+
+    .w-5 {
+        display: none
+    }
 </style>
 @stop
 
@@ -19,10 +23,13 @@
             <li class="breadcrumb-item active">All Invoices</li>
         </ol>
     </div>
+    <div class="m-2">
+        <button id="add_invoices" onclick="onChange()" class="btn btn-primary">Add Invoices</button>
+        <div id="alert_add_invoice" class="mt-2"></div>
+    </div>
 
-    <div class="px-4 m-2 py-2 .bg-light card mb-5">
+    <div class="px-4 m-2 py-2 .bg-light card mb-5" style="display: none" id="block_add_invoices">
         <h1 class="h3 mb-4 text-gray-800">Add Invoices</h1>
-        <div id="alert_add_invoice"></div>
         <div>
             <form id="add_invpice_form" class="mb-3">
                 @csrf
@@ -38,7 +45,7 @@
                     </div>
                     <div class="col">
                         <label class="mb-2">Original Price</label>
-                        <input name="orginal_price" id="orginal_price" value="4" type="text" class="form-control" placeholder="original price" disabled>
+                        <input name="orginal_price" id="orginal_price" value="" type="text" class="form-control" placeholder="original price" disabled>
                     </div>
                 </div>
 
@@ -93,6 +100,10 @@
                         <td>{{ $invoice->value_vat }}</td>
                         <td>{{ $invoice->total }}</td>
                         <td>{{ $invoice->user->first_name }} {{ $invoice->user->last_name }}</td>
+                        <td>
+                            <button class="btn btn-danger" id="del_invoice" invoice_id="{{ $invoice->id }}">Delete</button>
+                            <a href="{{ route('admin.invoices.print_invoice', $invoice->id) }}" target="_blank" class="btn btn-primary" invoice_id="{{ $invoice->id }}">As PDF</a>
+                        <td>
                     </tr>
                 @empty
                     <tr>
@@ -101,8 +112,9 @@
                 @endforelse
             </tbody>
         </table>
-
-        {{ $invoices->appends($_GET)->links() }}
+        <div class="mx-auto pb-10 w-4/5">
+            {!! $invoices->appends($_GET)->links() !!}
+        </div>
     </div>
 </main>
 @stop
@@ -111,6 +123,4 @@
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <script>const csrf = "{{ csrf_token() }}";</script>
     <script src="{{asset ('adminassets/assets/js/invoices.js') }}"></script>
-
-
 @stop

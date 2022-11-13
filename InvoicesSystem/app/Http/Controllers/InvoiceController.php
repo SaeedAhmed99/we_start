@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class InvoiceController extends Controller
 {
@@ -22,11 +23,8 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'product_id' => 'required',
-            // 'orginal_price' => 'required',
-            // 'rate_vat' => 'required',
-            // 'value_vat' => 'required',
-            // 'total' => 'required',
+            'product_id' => 'required',
+            'rate_vat' => 'required',
         ]);
         // dd($request->all());
 
@@ -65,5 +63,20 @@ class InvoiceController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    public function destroy(Request $request)
+    {
+        $invoice = Invoice::findOrFail($request->id);
+        $invoice->delete();
+        return true;
+    }
+
+    public function print_invoice($id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        $pdf = PDF::loadView('admin.invoices.print_invoice', compact('invoice'));
+
+        return $pdf->stream();
     }
 }

@@ -27,8 +27,9 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.'], function () {
 
     Route::group(['prefix' => 'invoices', 'as' => 'invoices.'], function () {
         Route::get('/', [InvoiceController::class, 'index'])->name('index');
-        Route::get('/create', [InvoiceController::class, 'create'])->name('create');
         Route::post('/store', [InvoiceController::class, 'store'])->name('store');
+        Route::post('/destroy', [InvoiceController::class, 'destroy'])->name('destroy');
+        Route::get('/print-invoice/{id}', [InvoiceController::class, 'print_invoice'])->name('print_invoice');
     });
 
     Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
