@@ -1,0 +1,156 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+    background: darkcyan !important;
+    color: #222;
+}
+
+section {
+    width: 1000px;
+    /* height: 420px; */
+    margin: 150px;
+    background: white;
+}
+
+form {
+    width: 96%;
+    height: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+form > p {
+    padding: 10px 5px;
+    font-size: 25px;
+    margin: 20px auto;
+}
+
+form > div {
+    height: 60px;
+    margin: 20px auto;
+    padding: 5px;
+}
+
+form  #alert {
+    height: 0px;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+form > .pr {
+    height: 110px;
+    display: none;
+}
+
+form div label {
+    background: #d8d5d5;
+    display: block;
+    padding: 12px;
+    border-radius: 5px;
+    width: 900px;
+    line-height: 25px;
+    border: 2ox solid #e5e5e5;
+    position: relative;
+}
+
+form div label::before {
+    content: 'Brouse';
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    width: 100px;
+    height: 107%;
+    line-height: 50px;
+    background: #ccc;
+    text-align: center;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+strong {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+strong h4 {
+    background: purple;
+    padding: 8px 2px;
+    color: white;
+    border-radius: 5px;
+}
+
+progress {
+    width: 100%;
+    height: 30%;
+    border-radius: 5px;
+}
+
+progress::-webkit-progress-bar {
+    width: 100%;
+    height: 20px;
+    background: rgb(223, 215, 215);
+}
+
+progress::-webkit-progress-value {
+    background: #00aced;
+}
+
+
+button {
+    margin: 10px;
+    padding: 12px 18px;
+    color: white;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    background: #00aced;
+    cursor: pointer;
+}
+
+button span:nth-child(2),
+button.active span:first-child{
+    display: none;
+}
+
+button.active span:nth-child(2) {
+    display: inline-block;
+}
+
+button.cancel {
+    background: #959595;
+    visibility: hidden;
+}
+
+.uploading {
+    position: relative;
+    padding-left: 20px;
+}
+
+.uploading::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 2px solid;
+    border-color: white transparent white transparent;
+    animation: rotate 1s infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
