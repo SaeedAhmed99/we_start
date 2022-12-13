@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        @yield('css')
         @include('admin.layout.head')
+        @yield('css')
     </head>
     <body class="sb-nav-fixed">
         @include('admin.layout.header')
@@ -13,7 +13,7 @@
                 @include('admin.layout.footer')
             </div>
         </div>
-        @yield('js')
         @include('admin.layout.foot')
+        @yield('js')
     </body>
 </html>

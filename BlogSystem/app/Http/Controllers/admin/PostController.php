@@ -72,38 +72,36 @@ class PostController extends Controller
 
     public function update(Request $request)
     {
-        $post = Post::find($request->id);
-        if ($post) {
-            $request->validate([
-                'title' => 'required|min:5|max:250',
-                'image' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
-                'content' => 'required|min:10',
-            ]);
+        $post = Post::findOrFail($request->id);
+        $request->validate([
+            'title' => 'required|min:5|max:250',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'content' => 'required|min:10',
+        ]);
 
-            $image = null;
-            $path = null;
-            $path = $post->image;
-            if ($request->hasFile('image')) {
-                File::delete(public_path($path));
-                $image = "post-" . time() . "." . $request->image->getClientOriginalExtension();
-                $path = $request->image->move(public_path('images/posts'), $image);
-                $path = 'images/posts/' . $image;
-            }
-
-            $title = $this->removescript($request->title);
-            $post->update([
-                'title' => $title,
-                'slug' => Str::slug($title),
-                'image' => $path,
-                'content' => $request->content,
-                'user_id' => Auth::user()->id,
-            ]);
-            $this->logs('update', 'update post (' . substr($title, 0, 10) . ' ...) by ' . Auth::user()->first_name . ' ' . Auth::user()->last_name);
-
-            return view('admin.posts.edit_post', compact('post'));
-        } else {
-            return route('admin.posts.index');
+        $image = null;
+        $path = null;
+        $path = $post->image;
+        if ($request->hasFile('image')) {
+            File::delete(public_path($path));
+            $image = "post-" . time() . "." . $request->image->getClientOriginalExtension();
+            $path = $request->image->move(public_path('images/posts'), $image);
+            $path = 'images/posts/' . $image;
         }
+
+        $title = $this->removescript($request->title);
+        $post->update([
+            'title' => $title,
+            'slug' => Str::slug($title),
+            'image' => $path,
+            'content' => $request->content,
+            'user_id' => Auth::user()->id,
+        ]);
+        $this->logs('update', 'update post (' . substr($title, 0, 10) . ' ...) by ' . Auth::user()->first_name . ' ' . Auth::user()->last_name);
+
+        return response()->json([
+            'image' => asset($path)
+        ]);
 
     }
 
@@ -112,13 +110,13 @@ class PostController extends Controller
         return str_replace('</script>', '', $input);
     }
 
-    public function destroy($id) {
-        $post = Post::find($id);
+    public function destroy(Request $request) {
+        $post = Post::find($request->id);
         if ($post) {
             $this->logs('trash', 'This post ('. substr($post->title, 0, 10) . ' ...) has been moved to the trash by ' . Auth::user()->first_name . ' ' . Auth::user()->last_name);
             $post->delete();
         }
-        return redirect()->back();
+        return true;
     }
 
     public function trash(Request $request)
@@ -137,14 +135,14 @@ class PostController extends Controller
         return view('admin.posts.trash', compact('posts'));
     }
 
-    public function forcedelete($id) {
-        $post = Post::onlyTrashed()->find($id);
+    public function forcedelete(Request $request) {
+        $post = Post::onlyTrashed()->find($request->id);
         if ($post) {
             $this->logs('delete', 'This post ('. substr($post->title, 0, 10) . ' ...) has been permanently deleted by ' . Auth::user()->first_name . ' ' . Auth::user()->last_name);
             File::delete(public_path($post->image));
             $post->forceDelete();
         }
-        return redirect()->back();
+        return true;
     }
 
     public function restore($id)

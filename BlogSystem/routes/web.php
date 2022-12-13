@@ -39,8 +39,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::post('/store', [PostController::class, 'store'])->name('store');
         Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
         Route::post('/update', [PostController::class, 'update'])->name('update');
-        Route::get('/destroy/{id}', [PostController::class, 'destroy'])->name('destroy');
-        Route::get('/forcedelete/{id}', [PostController::class, 'forcedelete'])->name('forcedelete');
+        Route::post('/destroy', [PostController::class, 'destroy'])->name('destroy');
+        Route::post('/forcedelete', [PostController::class, 'forcedelete'])->name('forcedelete');
         Route::get('/restore/{id}', [PostController::class, 'restore'])->name('restore');
         Route::get('/trashed', [PostController::class, 'trash'])->name('trash');
     });

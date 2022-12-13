@@ -60,7 +60,7 @@
                     <td>
                         {{-- <div class="btn-group"> --}}
                             <a href="{{ route('admin.posts.restore', $post->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-undo"></i></a>
-                            <a href="{{ route('admin.posts.forcedelete', $post->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i></a>
+                            <a class="btn btn-danger btn-sm forcedelete-post" post_id="{{ $post->id }}"><i class="fas fa-times"></i></a>
                         {{-- </div> --}}
                     </td>
                 </tr>
@@ -80,4 +80,6 @@
 
 @section('js')
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script>const csrf = "{{ csrf_token() }}";</script>
+    <script src="{{asset ('adminassets/assets/js/posts.js') }}"></script>
 @stop

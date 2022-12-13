@@ -61,7 +61,7 @@
                         {{-- <div class="btn-group"> --}}
                             <a href="#" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                             <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
-                            <a href="{{ route('admin.posts.destroy', $post->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                            <button post_id="{{ $post->id }}" class="btn btn-danger btn-sm delete-post"><i class="fas fa-trash"></i></button>
                         {{-- </div> --}}
                     </td>
                 </tr>
@@ -81,4 +81,6 @@
 
 @section('js')
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script>const csrf = "{{ csrf_token() }}";</script>
+    <script src="{{asset ('adminassets/assets/js/posts.js') }}"></script>
 @stop

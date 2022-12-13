@@ -13,7 +13,8 @@
     <div class="px-4 m-2 py-2 .bg-light card">
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Edit Post</h1>
-        <form action="{{ route('admin.posts.update') }}" method="POST" enctype="multipart/form-data">
+        <div id="alert_edit_post"></div>
+        <form id="update_post_form">
             @csrf
             <div class="mb-3">
                 <label>Title</label>
@@ -23,16 +24,17 @@
                     <small class="invalid-feedback">{{ $message }}</small>
                 @enderror
             </div>
-
-            <div class="mb-3">
-                <label>Image</label>
+            <div class="">
+                <img id="post_image" width="100%" height="400px" src="{{ asset($post->image) }}" alt="">
+            </div>
+            <div class="my-3">
                 <input type="file" name="image" class="form-control @error('title') is-invalid @enderror">
                 @error('title')
                     <small class="invalid-feedback">{{ $message }}</small>
                 @enderror
             </div>
 
-            <div class="mb-3">
+            <div class="my-3 card">
                 <label>Content</label>
                 <textarea name="content" placeholder="Cotnent" class="form-control @error('title') is-invalid @enderror" rows="5">{{ old('content', $post->content) }}</textarea>
                 @error('title')
@@ -47,10 +49,12 @@
 @stop
 
 @section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.2.0/tinymce.min.js" integrity="sha512-tofxIFo8lTkPN/ggZgV89daDZkgh1DunsMYBq41usfs3HbxMRVHWFAjSi/MXrT+Vw5XElng9vAfMmOWdLg0YbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script>
-    tinymce.init({
-      selector: 'textarea',
-      plugins: ['code']
-    });
-  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.2.0/tinymce.min.js" integrity="sha512-tofxIFo8lTkPN/ggZgV89daDZkgh1DunsMYBq41usfs3HbxMRVHWFAjSi/MXrT+Vw5XElng9vAfMmOWdLg0YbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script>
+        tinymce.init({
+        selector: 'textarea',
+        plugins: ['code']
+        });
+    </script>
+    <script>const csrf = "{{ csrf_token() }}";</script>
+    <script src="{{asset ('adminassets/assets/js/posts.js') }}"></script>
 @stop
