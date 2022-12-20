@@ -40,6 +40,10 @@ class QRController extends Controller
         $qr_eye_color_outer_0 = Hex::fromString($request->qr_eye_color_outer_0 ?? '#000000')->toRgb() ?? 'rgb(0,0,0)';
         $qr_eye_color_outer_1 = Hex::fromString($request->qr_eye_color_outer_1 ?? '#000000')->toRgb() ?? 'rgb(0,0,0)';
         $qr_eye_color_outer_2 = Hex::fromString($request->qr_eye_color_outer_2 ?? '#000000')->toRgb() ?? 'rgb(0,0,0)';
+        $qr_gradient_color_start = Hex::fromString($request->qr_gradient_color_start ?? '#000000')->toRgb() ?? 'rgb(0,0,0)';
+        $qr_gradient_color_end = Hex::fromString($request->qr_gradient_color_end ?? '#000000')->toRgb() ?? 'rgb(0,0,0)';
+        $qr_gradient_type = $request->qr_gradient_type;
+        $qr_attachment = $request->input('qr_attachment') ?? 'no';
         // return $qr_color;
         // 221,234,82
 
@@ -58,8 +62,13 @@ class QRController extends Controller
         $qr->eyeColor(0, $qr_eye_color_ineer_0->red(), $qr_eye_color_ineer_0->green(), $qr_eye_color_ineer_0->blue(), $qr_eye_color_outer_0->red(), $qr_eye_color_outer_0->green(), $qr_eye_color_outer_0->blue());
         $qr->eyeColor(1, $qr_eye_color_ineer_1->red(), $qr_eye_color_ineer_1->green(), $qr_eye_color_ineer_1->blue(), $qr_eye_color_outer_1->red(), $qr_eye_color_outer_1->green(), $qr_eye_color_outer_1->blue());
         $qr->eyeColor(2, $qr_eye_color_ineer_2->red(), $qr_eye_color_ineer_2->green(), $qr_eye_color_ineer_2->blue(), $qr_eye_color_outer_2->red(), $qr_eye_color_outer_2->green(), $qr_eye_color_outer_2->blue());
+        $qr->gradient($qr_gradient_color_start->red(), $qr_gradient_color_start->green(), $qr_gradient_color_start->blue(), $qr_gradient_color_end->red(), $qr_gradient_color_end->green(), $qr_gradient_color_end->blue(), $qr_gradient_type);
+        if ($qr_attachment != 'no') {
+            $qr->merge('../public/images/logo01.png', 0.3, true);
+        }
         $qr->generate($body, '../public/qr_code/' . $imageName);
         // $qr = QrCode::generate($body);
+        // $qr = QrCode::generate('http://www.simplesoftware.io');
 
         return back()->with([
             'status' => 'QR Code generated successfully!',

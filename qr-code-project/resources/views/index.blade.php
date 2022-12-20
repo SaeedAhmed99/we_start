@@ -31,6 +31,15 @@
                                     @enderror
                                 </div>
                                 <hr>
+                                <div class="row my-3">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="form-control">
+                                                <input name="qr_attachment" type="checkbox"> Add Logo
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-3">
                                         <div class="form-group">
@@ -202,6 +211,35 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row mt-3">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="qr_gradient_color_start">QR Gradient Color Start</label>
+                                            <br>
+                                            <input class="form-control" type="color" name="qr_gradient_color_start" value="{{ old('qr_gradient_color_start', '#000000') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="qr_gradient_color_end">QR Gradient Color End</label>
+                                            <br>
+                                            <input class="form-control" type="color" name="qr_gradient_color_end" value="{{ old('qr_gradient_color_end', '#000000') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="qr_gradient_type">QR Gradient Type</label>
+                                            <select name="qr_gradient_type" class="form-control">
+                                                <option value="">QR Gradient Type</option>
+                                                <option value="vertical">Vertical</option>
+                                                <option value="horizontal">Horizontal</option>
+                                                <option value="diagonal">Diagonal</option>
+                                                <option value="inverse_diagonal">Inverse Diagonal</option>
+                                                <option value="radial">Radial</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <button type="submit" name="submit" class="btn btn-primary mt-2">Generate QR Code</button>
@@ -217,6 +255,7 @@
                                 @else
                                     <img src="{{ asset('qr_code/' . session('image')) }}" class="img-fluid">
                                 @endif
+
                                 {{-- <h1>{{ session('image') }}</h1> --}}
                             @endif
                         </div>
