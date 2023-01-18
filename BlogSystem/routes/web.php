@@ -5,6 +5,7 @@ use App\Http\Controllers\front\PagesController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\LogController;
+use App\Http\Controllers\admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,14 @@ use App\Http\Controllers\admin\LogController;
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return 'sdwa';
 // });
+
+
+Route::get('/categories', [CategoryController::class, 'index']);
+
+
+
 
 
 Route::group(['as' => 'front.'], function () {
