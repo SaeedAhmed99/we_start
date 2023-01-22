@@ -104,8 +104,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="tab-pane fade" id="images" role="tabpanel"
-                                        aria-labelledby="images-tab">
+                                    <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
                                         <div class="row">
 
                                             <div class="col-12">
@@ -145,12 +144,12 @@
                                                     <div class="color-wrapper">
                                                         <div class="row">
                                                             <div class="col-8">
-                                                                <input type="text" name="variation[color][0][value]" class="form-control"
-                                                                placeholder="Value">
+                                                                <input type="text" name="variation[color][0][value]"
+                                                                    class="form-control" placeholder="Value">
                                                             </div>
                                                             <div class="col-4">
-                                                                <input type="text" name="variation[color][0][price]" class="form-control"
-                                                                placeholder="price">
+                                                                <input type="text" name="variation[color][0][price]"
+                                                                    class="form-control" placeholder="price">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -166,12 +165,12 @@
                                                     <div class="size-wrapper">
                                                         <div class="row">
                                                             <div class="col-8">
-                                                                <input type="text" name="variation[size][0][value]" class="form-control"
-                                                                placeholder="Value">
+                                                                <input type="text" name="variation[size][0][value]"
+                                                                    class="form-control" placeholder="Value">
                                                             </div>
                                                             <div class="col-4">
-                                                                <input type="text" name="variation[size][0][price]" class="form-control"
-                                                                placeholder="price">
+                                                                <input type="text" name="variation[size][0][price]"
+                                                                    class="form-control" placeholder="price">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -196,28 +195,46 @@
 @endsection
 
 @section('js')
-<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-<script>
-    tinymce.init({
-        selector: '.contentarea'
-    });
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <script>
+        tinymce.init({
+            selector: '.contentarea'
+        });
 
-    Dropzone.autoDiscover = false;
-    let myDropzone = new Dropzone("div#gallery", { url: "/file/post"});
+        var uploadedDocumentMap = {}
+        Dropzone.autoDiscover = false;
+        let myDropzone = new Dropzone("div#gallery", {
+            url: "{{ route('admin.products.add.image') }}",
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            addRemoveLinks: true,
+            success: function(file, response) {
+                let image = `<input type="hidden" name="album[]" value="${response}" />`;
+                document.querySelector('.gallery-wrapper').insertAdjacentHTML("beforeend", image);
+                uploadedDocumentMap[file.name] = response
+                // console.log(uploadedDocumentMap);
+            },
+            removedfile: function(file) {
+                file.previewElement.remove()
+                name = uploadedDocumentMap[file.name];
+                document.querySelector('input[name="album[]"][value="' + name + '"]').remove()
+            }
+        });
 
-    let btns = document.querySelectorAll('.add_feild');
+        let btns = document.querySelectorAll('.add_feild');
 
-    btns.forEach(el => {
-        el.onclick = (e) => {
-            e.preventDefault();
-            let type = el.dataset.type;
-            // console.log(type);
+        btns.forEach(el => {
+            el.onclick = (e) => {
+                e.preventDefault();
+                let type = el.dataset.type;
+                // console.log(type);
 
-            let index = document.querySelectorAll(`.${type}-wrapper .row`).length;
-            // console.log(index);
+                let index = document.querySelectorAll(`.${type}-wrapper .row`).length;
+                // console.log(index);
 
-            let field = `
+                let field = `
             <div class="row">
                 <div class="col-8">
                     <input type="text" name="variation[${type}][${index}][value]" class="form-control"
@@ -231,27 +248,27 @@
             `;
 
 
-            // document.querySelector(`.${type}-wrapper`).innerHTML += field;
-            document.querySelector(`.${type}-wrapper`).insertAdjacentHTML("beforeend", field );
+                // document.querySelector(`.${type}-wrapper`).innerHTML += field;
+                document.querySelector(`.${type}-wrapper`).insertAdjacentHTML("beforeend", field);
 
 
-            // $('.btn').click(function() {
-            // })
-            // $('.btn').on('click', function() {
-            // })
-            // $('.btn-wrapper').on('click', '.btn', function() {
-            // })
+                // $('.btn').click(function() {
+                // })
+                // $('.btn').on('click', function() {
+                // })
+                // $('.btn-wrapper').on('click', '.btn', function() {
+                // })
+            }
+        })
+
+        let inputImage = document.querySelector('#inputImage');
+        inputImage.onchange = (e) => {
+            let output = e.target.nextElementSibling;
+            // console.log(output);
+            output.src = URL.createObjectURL(e.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // free memory
+            }
         }
-    })
-
-    let inputImage = document.querySelector('#inputImage');
-    inputImage.onchange = (e) => {
-        let output = e.target.nextElementSibling;
-        // console.log(output);
-        output.src = URL.createObjectURL(e.target.files[0]);
-        output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-        }
-    }
-</script>
+    </script>
 @endsection

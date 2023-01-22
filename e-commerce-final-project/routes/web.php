@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\NotifyController;
@@ -42,13 +43,23 @@ Route::group(['as' => 'admin.', 'middleware' => 'auth' ,], function () {
         Route::get('/create', [ProductController::class, 'create'])->name('create');
         Route::post('/store', [ProductController::class, 'store'])->name('store');
         Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
-        Route::get('/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy');
+        Route::post('/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy');
+        Route::post('add-new-image', [ProductController::class, 'add_image'])->name('add.image');
+    });
+
+    Route::group(['prefix' => 'coupons', 'as' => 'coupons.'], function () {
+        Route::get('/', [CouponsController::class, 'index'])->name('index');
+        Route::get('/create', [CouponsController::class, 'create'])->name('create');
+        Route::post('/store', [CouponsController::class, 'store'])->name('store');
+        Route::get('{id}', [CouponsController::class, 'show'])->name('show');
+        Route::post('update', [CouponsController::class, 'update'])->name('update');
+        Route::post('/destroy/{id}', [CouponsController::class, 'destroy'])->name('destroy');
     });
 
     Route::get('settings/', [SettingController::class, 'index'])->name('settings');
     Route::post('settings/', [SettingController::class, 'store'])->name('settings.store');
 
-    Route::get('send-sms', [NotifyController::class, 'send']);
+    Route::get('send-sms', [NotifyController::class, 'send'])->name('send_sms');
 });
 
 
